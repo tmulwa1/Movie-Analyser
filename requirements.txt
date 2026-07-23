@@ -1,0 +1,6 @@
+Flask
+SQLAlchemy
+requests
+python-dotenv
+pandas
+matplotlib
