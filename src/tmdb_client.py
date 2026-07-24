@@ -24,3 +24,28 @@ def search_movies(query):
         for item in results_list
     ]
     return(movie_data)
+
+def get_movie_details(tmdb_id):
+    url= f"{TMDB_BASE_URL}/movie/{tmdb_id}"
+    params = {"api_key": TMDB_API_KEY, "append_to_response": "credits"} # append_to_response lets you bundle credits data into the same request
+
+    # build a response by sending a GET request to API
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    # extracting the relevant data from the response
+    movie_genres = str.join(', ', [genre['name'] for genre in data['genres']])
+    # for loop to find the director's name in the credits data
+    movie_director = next((crew_member['name'] for crew_member in data['credits']['crew'] if crew_member['job'] == 'Director'), None)
+
+    movie_data = {
+        'title': data.get('title', 'N/A'),
+        'tmdb_id': data.get('id', 'N/A'),
+        'runtime': data.get('runtime', 'N/A'), 
+        'release_year': data.get('release_date', '')[:4] if data.get('release_date') else 'N/A',
+        'genres': movie_genres,
+        'director': movie_director,
+        'vote_average': data.get('vote_average', 'N/A'),
+        'poster_path': data.get('poster_path', None)
+    }
+    return movie_data
