@@ -1,5 +1,6 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float, Date, Text
+from sqlalchemy import create_engine, Column, Integer, String, Float, Date, Text, engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+import os
 
 Base = declarative_base()
 engine = create_engine('sqlite:///data/movies.db')
@@ -21,3 +22,10 @@ class Movie(Base):
     notes = Column(Text)
     date_watched = Column(Date)
 
+def initialise_db():
+    os.makedirs('data', exist_ok=True)
+    Base.metadata.create_all(engine)
+    return engine
+
+def get_session():
+    return Session()
