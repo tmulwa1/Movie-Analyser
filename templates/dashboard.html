@@ -1,0 +1,6 @@
+<h1>My Movies</h1>
+<ul>
+    {% for movie in movies %}
+    <li>{{ movie.title }} ({{ movie.release_year }}) - My rating: {{ movie.my_rating }}</li>
+    {% endfor %}
+</ul>
