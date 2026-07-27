@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from src.database import get_session, initialise_db, Movie
 from src.tmdb_client import get_movie_details, search_movies
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -26,6 +27,35 @@ def add_movie():
         results = search_movies(search)
     return render_template('add_movie.html', results=results)
 
+@app.route('/add/confirm/<int:tmdb_id>', methods=['GET','POST'])
+def confirm_movie(tmdb_id):
+    # First visit
+    if request.method == 'GET':
+        details = get_movie_details(tmdb_id)
+        return render_template('confirm_movie.html', details=details)
+    elif request.method == 'POST':
+        details = get_movie_details(tmdb_id) 
+
+        # Retreiving form data, returns string, so need to cast
+        my_rating = float(request.form.get('my_rating'))
+        notes = request.form.get('notes')
+        date_watched = request.form.get('date_watched')
+        # Converting the date string to a datetime object
+        date = datetime.strptime(date_watched, '%Y-%m-%d').date()
+
+        movie = Movie(tmdb_id=details['tmdb_id'], title=details['title'], 
+                      release_year=details['release_year'], genres=details['genres'], 
+                      director=details['director'], runtime=details['runtime'], vote_average=details['vote_average'], 
+                      poster_path=details['poster_path'], my_rating=my_rating, notes=notes, date_watched=date)
+
+        session = get_session()
+        session.add(movie)
+        session.commit()
+        session.close()
+
+        # Redirect to the dashboard after saving the movie
+        return redirect(url_for('dashboard'))
+    
 if __name__ == '__main__':
     initialise_db()
     app.run(debug=True)
