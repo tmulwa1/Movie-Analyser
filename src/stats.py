@@ -7,7 +7,7 @@ def get_movies_dataframe():
     session = get_session()
     movies = session.query(Movie).all()
 
-    # List comprehension that builds one dictionary per movie
+    # List comprehension that converts Movie objects into a dictionary
     movie_data = [
         {
             'title': movie.title,
@@ -25,3 +25,13 @@ def get_movies_dataframe():
     df = pd.DataFrame(movie_data)
     return df
 
+# Handling genre normalisation issue
+def genre_breakdown():
+    data = get_movies_dataframe()
+    # Turns each string into a Python list
+    data['genres'] = data['genres'].str.split(', ')
+    # Takes column containing lists and duplicates entire row once per item in list
+    exploded_df = data.explode('genres')
+    genre_number = exploded_df['genres'].value_counts()
+
+    return genre_number
