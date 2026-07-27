@@ -64,6 +64,19 @@ def movie_list():
     session.close()
     return rendered
 
+@app.route('/movies/<int:movie_id>', methods=['GET'])
+def movie_details(movie_id):
+    session = get_session()
+    movie = session.query(Movie).filter_by(id=movie_id).first()
+
+    # Redirects the user if the movie does not exist in the database
+    if movie is None:
+        session.close()
+        return redirect(url_for('dashboard'))
+
+    rendered = render_template('movie_detail.html', movie=movie)
+    session.close()
+    return rendered
     
 if __name__ == '__main__':
     initialise_db()
