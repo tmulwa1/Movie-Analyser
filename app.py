@@ -55,6 +55,15 @@ def confirm_movie(tmdb_id):
 
         # Redirect to the dashboard after saving the movie
         return redirect(url_for('dashboard'))
+
+@app.route('/movies', methods=['GET'])
+def movie_list():
+    session = get_session()
+    movies = session.query(Movie).all()
+    rendered = render_template('movie_list.html', movies=movies)
+    session.close()
+    return rendered
+
     
 if __name__ == '__main__':
     initialise_db()

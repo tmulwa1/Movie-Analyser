@@ -1,0 +1,9 @@
+<h1>Movie List</h1>
+
+{% for movie in movies %}
+    <p>
+        {{ movie.title }} ({{ movie.release_year }}) - {{ movie.my_rating }}/10.0 <br>
+        <a href="/movies/{{ movie.id }}">View Details</a>
+        <br>
+    </p>
+{% endfor %}
