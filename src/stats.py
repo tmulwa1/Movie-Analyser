@@ -23,6 +23,8 @@ def get_movies_dataframe():
 
     session.close()
     df = pd.DataFrame(movie_data)
+    # Converting from object to datetime
+    df['date_watched'] = pd.to_datetime(df['date_watched']) 
     return df
 
 # Handling genre normalisation issue
@@ -41,4 +43,16 @@ def average_rating_by_genre():
     data['genres'] = data['genres'].str.split(', ')
     exploded_df = data.explode('genres')
     average = exploded_df.groupby('genres')['my_rating'].mean()
+    return average
+
+def average_rating_by_director():
+    data = get_movies_dataframe()
+    average = data.groupby('director')['my_rating'].mean()
+    return average
+
+def ratings_over_time():
+    data = get_movies_dataframe()
+    # Converts date into 'year-month' format
+    data['month'] = data['date_watched'].dt.to_period('M')
+    average = data.groupby('month')['my_rating'].mean()
     return average
