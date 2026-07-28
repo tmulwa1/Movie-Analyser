@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from src.database import get_session, initialise_db, Movie
 from src.tmdb_client import get_movie_details, search_movies
+from src.charts import create_genre_chart
 from datetime import datetime
 
 app = Flask(__name__)
@@ -9,6 +10,7 @@ app = Flask(__name__)
 def dashboard():
 
     session = get_session() 
+    create_genre_chart()
     # Query all movies from the database
     movies = session.query(Movie).all()
     rendered = render_template('dashboard.html', movies=movies)
