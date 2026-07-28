@@ -56,3 +56,10 @@ def ratings_over_time():
     data['month'] = data['date_watched'].dt.to_period('M')
     average = data.groupby('month')['my_rating'].mean()
     return average
+
+def movies_per_month():
+    data = get_movies_dataframe()
+    data['month'] = data['date_watched'].dt.to_period('M')
+    # Counts number of movies in a months and returns in chronological order
+    movie_number = data['month'].value_counts().sort_index()
+    return movie_number
