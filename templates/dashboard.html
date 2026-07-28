@@ -1,11 +1,25 @@
-<h1>My Movies</h1>
-<img src="{{ url_for('static', filename='charts/genre_breakdown.png') }}" alt="Genre Breakdown Chart">
-<img src="{{ url_for('static', filename='charts/ratings.png') }}" alt="Ratings Over Time Chart">
-<ul>
-    {% for movie in movies %}
-    <li>{{ movie.title }} ({{ movie.release_year }}) - My rating: {{ movie.my_rating }}</li>
-    {% if movie.poster_path %}
-    <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
-    {% endif %}
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en"></html>
+    <head>
+        <meta charset="UTF-8">
+        <title>My Movies</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+    <body>
+        <h1>My Movies</h1>
+        <img src="{{ url_for('static', filename='charts/genre_breakdown.png') }}" alt="Genre Breakdown Chart">
+        <img src="{{ url_for('static', filename='charts/ratings.png') }}" alt="Ratings Over Time Chart">
+
+        <div class="movie-grid">
+            {% for movie in movies %}
+            <div class="movie-card">
+                <p>{{ movie.title }} ({{ movie.release_year }}) - My rating: {{ movie.my_rating }}</p>
+                {% if movie.poster_path %}
+                <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

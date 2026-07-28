@@ -1,13 +1,24 @@
-<h1>Add a Movie</h1>
+<!DOCTYPE html>
+<html lang="en"></html>
+    <head>
+        <meta charset="UTF-8">
+        <title>My Movies</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
 
-<form method="POST">
-    <input type="text" name="query" placeholder="Search for a movie">
-    <button type="submit">Search</button>
-</form>
+    <body>
+        <h1>Add a Movie</h1>
 
-{% for movie in results %}
-    <p>
-        {{ movie.title }} ({{ movie.release_year }})
-        <a href="/add/confirm/{{ movie.id }}">Add to my movies</a>
-    </p>
-{% endfor %}
+        <form method="POST">
+            <input type="text" name="query" placeholder="Search for a movie">
+            <button type="submit">Search</button>
+        </form>
+
+        {% for movie in results %}
+            <p>
+                {{ movie.title }} ({{ movie.release_year }})
+                <a href="/add/confirm/{{ movie.id }}">Add to my movies</a>
+            </p>
+        {% endfor %}
+    </body>
+</html>

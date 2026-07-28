@@ -1,17 +1,32 @@
-<h1>Movie Details</h1>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Movie Details</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
 
-{% if movie.poster_path %}
-<img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
-{% endif %}
+    <body>
+        <h1>Movie Details</h1>
+        <div class="detail-layout">
+            <div class="detail-poster">
+                {% if movie.poster_path %}
+                <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+                {% endif %}
+            </div>
 
-<p><b>{{ movie.title }}</b> <br>
-<b>{{ movie.director }}</b> <br>
-<b>{{ movie.genres }}</b></p>
-
-<p>
-    Runtime: {{ movie.runtime }} <br>
-    Vote Average: {{ movie.vote_average }} <br>
-    My Rating: {{ movie.my_rating }} <br>
-    Date Watched: {{ movie.date_watched }} <br>
-    Notes: {{ movie.notes }}
-</p>
+            <div class="detail-info">
+                <h1>{{ movie.title }} ({{ movie.release_year }})</h1>
+                <p><b>Director:</b> {{ movie.director }}</p>
+                <p><b>Genres:</b> {{ movie.genres }}</p>
+                <p><b>Runtime:</b> {{ movie.runtime }}</p> 
+                <p><b>TMDB Rating:</b> {{ movie.vote_average }}</p>
+                <p><b>My Rating:</b> {{ movie.my_rating }}</p>
+                <p><b>Watched on:</b> {{ movie.date_watched }}</p> 
+                {% if movie.notes %}
+                <p><b>Notes:</b> {{ movie.notes }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html

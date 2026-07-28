@@ -1,12 +1,25 @@
-<h1>Movie List</h1>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Movie List</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
 
-{% for movie in movies %}
-    <p>
-        {{ movie.title }} ({{ movie.release_year }}) - {{ movie.my_rating }}/10.0 <br>
-        {% if movie.poster_path %}
-        <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
-        {% endif %}
-        <br><a href="/movies/{{ movie.id }}">View Details</a>
-        <br>
-    </p>
-{% endfor %}
+    <body>
+        <h1>Movie List</h1>
+        <div class="movie-grid">
+            {% for movie in movies %}
+            <div class="movie-card">
+                <p>
+                    {% if movie.poster_path %}
+                    <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+                    {% endif %}
+                    {{ movie.title }} ({{ movie.release_year }}) - {{ movie.my_rating }}/10.0
+                    <a href="/movies/{{ movie.id }}">View Details</a>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
