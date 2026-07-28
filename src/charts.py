@@ -2,7 +2,7 @@ import os
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from src.stats import genre_breakdown
+from src.stats import genre_breakdown, ratings_over_time
 
 def create_genre_chart():
     # Creating the chart folder
@@ -13,4 +13,11 @@ def create_genre_chart():
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.savefig('static/charts/genre_breakdown.png')
+    plt.close()
+
+def create_ratings_chart():
+    data = ratings_over_time()
+    data.plot(kind='line')
+    plt.tight_layout()
+    plt.savefig('static/charts/ratings.png')
     plt.close()

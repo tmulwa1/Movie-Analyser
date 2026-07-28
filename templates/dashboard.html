@@ -1,5 +1,6 @@
 <h1>My Movies</h1>
 <img src="{{ url_for('static', filename='charts/genre_breakdown.png') }}" alt="Genre Breakdown Chart">
+<img src="{{ url_for('static', filename='charts/ratings.png') }}" alt="Ratings Over Time Chart">
 <ul>
     {% for movie in movies %}
     <li>{{ movie.title }} ({{ movie.release_year }}) - My rating: {{ movie.my_rating }}</li>
