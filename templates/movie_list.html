@@ -3,7 +3,10 @@
 {% for movie in movies %}
     <p>
         {{ movie.title }} ({{ movie.release_year }}) - {{ movie.my_rating }}/10.0 <br>
-        <a href="/movies/{{ movie.id }}">View Details</a>
+        {% if movie.poster_path %}
+        <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+        {% endif %}
+        <br><a href="/movies/{{ movie.id }}">View Details</a>
         <br>
     </p>
 {% endfor %}

@@ -4,5 +4,8 @@
 <ul>
     {% for movie in movies %}
     <li>{{ movie.title }} ({{ movie.release_year }}) - My rating: {{ movie.my_rating }}</li>
+    {% if movie.poster_path %}
+    <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+    {% endif %}
     {% endfor %}
 </ul>

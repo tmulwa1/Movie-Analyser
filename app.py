@@ -3,6 +3,7 @@ from src.database import get_session, initialise_db, Movie
 from src.tmdb_client import get_movie_details, search_movies
 from src.charts import create_genre_chart, create_ratings_chart
 from datetime import datetime
+from config import TMDB_IMAGE_BASE_URL
 
 app = Flask(__name__)
 
@@ -80,6 +81,11 @@ def movie_details(movie_id):
     rendered = render_template('movie_detail.html', movie=movie)
     session.close()
     return rendered
+
+@app.context_processor
+def inject_image_base_url():
+    # Injects the variable into every template automatically without passing manually
+    return {"TMDB_IMAGE_BASE_URL": TMDB_IMAGE_BASE_URL}
     
 if __name__ == '__main__':
     initialise_db()

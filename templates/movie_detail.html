@@ -1,4 +1,9 @@
 <h1>Movie Details</h1>
+
+{% if movie.poster_path %}
+<img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+{% endif %}
+
 <p><b>{{ movie.title }}</b> <br>
 <b>{{ movie.director }}</b> <br>
 <b>{{ movie.genres }}</b></p>
