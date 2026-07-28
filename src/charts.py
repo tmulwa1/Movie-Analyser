@@ -16,6 +16,7 @@ def create_genre_chart():
     plt.close()
 
 def create_ratings_chart():
+    os.makedirs('static/charts', exist_ok=True)
     data = ratings_over_time()
     data.plot(kind='line')
     plt.tight_layout()
