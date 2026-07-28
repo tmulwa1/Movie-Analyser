@@ -35,3 +35,10 @@ def genre_breakdown():
     genre_number = exploded_df['genres'].value_counts()
 
     return genre_number
+
+def average_rating_by_genre():
+    data = get_movies_dataframe()
+    data['genres'] = data['genres'].str.split(', ')
+    exploded_df = data.explode('genres')
+    average = exploded_df.groupby('genres')['my_rating'].mean()
+    return average
