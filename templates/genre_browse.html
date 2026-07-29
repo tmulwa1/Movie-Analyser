@@ -8,7 +8,7 @@
     <div class="movie-card">
         <p>
             {% if movie.poster_path %}
-            <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+            <a href="/discover/movie/{{ movie.id }}"><img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster"></a>
             {% endif %}
             {{ movie.title }} ({{ movie.release_year }}) - {{ movie.vote_average }}
         </p>
