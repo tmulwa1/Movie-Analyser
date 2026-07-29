@@ -1,3 +1,23 @@
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Movie Analyser{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+    <body>
+        <nav class="navbar">
+            <a href="{{ url_for('dashboard') }}" class="nav-brand">🎥 My Movie Analyser</a>
+            <div class="nav-links">
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('movie_list') }}">All Movies</a>
+                <a href="{{ url_for('add_movie') }}">Add a Movie</a>
+            </div>
+        </nav>
+
+        <main class="container">
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+</html>

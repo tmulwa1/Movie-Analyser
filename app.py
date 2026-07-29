@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from src.database import get_session, initialise_db, Movie
-from src.tmdb_client import get_movie_details, search_movies
+from src.tmdb_client import get_movie_details, search_movies, get_genres, get_watch_providers
 from src.charts import create_genre_chart, create_ratings_chart
 from datetime import datetime
 from config import TMDB_IMAGE_BASE_URL
@@ -79,6 +79,14 @@ def movie_details(movie_id):
         return redirect(url_for('dashboard'))
 
     rendered = render_template('movie_detail.html', movie=movie)
+    session.close()
+    return rendered
+
+@app.route('/discover', methods=['GET'])
+def discover_genres():
+    session = get_session()
+    genres = get_genres()
+    rendered = render_template('discover_genres.html', genres=genres)
     session.close()
     return rendered
 

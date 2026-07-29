@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html lang="en"></html>
-    <head>
-        <meta charset="UTF-8">
-        <title>My Movies</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    </head>
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
 
-    <body>
-        <h1>Confirm Movie</h1>
+{% block content %}
+<h1>Confirm Movie</h1>
 
-        <p>
-        Title: {{ details.title }} ({{details.release_year}}) <br>
-        Director: {{ details.director }} <br>
-        Genres: {{ details.genres }}
-        </p>
+<p>
+Title: {{ details.title }} ({{details.release_year}}) <br>
+Director: {{ details.director }} <br>
+Genres: {{ details.genres }}
+</p>
 
-        <form method="POST">
-            <input type="number" name="my_rating" step="0.5" placeholder="Enter your rating (1-10)" min="1" max="10">
-            <br><br>
-            <input type="date" name="date_watched" placeholder="Enter the date watched">
-            <br><br>
-            <textarea name="notes" placeholder="Thoughts on the movie..."></textarea>
-            <br><br>
-            <button type="submit">Add movie</button>
-        </form>
-        
-    </body>
-</html>
+<form method="POST">
+    <input type="number" name="my_rating" step="0.5" placeholder="Enter your rating (1-10)" min="1" max="10">
+    <br><br>
+    <input type="date" name="date_watched" placeholder="Enter the date watched">
+    <br><br>
+    <textarea name="notes" placeholder="Thoughts on the movie..."></textarea>
+    <br><br>
+    <button type="submit">Add movie</button>
+</form>
+{% endblock %}

@@ -1,32 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Movie Details</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    </head>
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
 
-    <body>
-        <h1>Movie Details</h1>
-        <div class="detail-layout">
-            <div class="detail-poster">
-                {% if movie.poster_path %}
-                <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
-                {% endif %}
-            </div>
+{% block content %}
+<h1>Movie Details</h1>
+<div class="detail-layout">
+    <div class="detail-poster">
+        {% if movie.poster_path %}
+        <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+        {% endif %}
+    </div>
 
-            <div class="detail-info">
-                <h1>{{ movie.title }} ({{ movie.release_year }})</h1>
-                <p><b>Director:</b> {{ movie.director }}</p>
-                <p><b>Genres:</b> {{ movie.genres }}</p>
-                <p><b>Runtime:</b> {{ movie.runtime }}</p> 
-                <p><b>TMDB Rating:</b> {{ movie.vote_average }}</p>
-                <p><b>My Rating:</b> {{ movie.my_rating }}</p>
-                <p><b>Watched on:</b> {{ movie.date_watched }}</p> 
-                {% if movie.notes %}
-                <p><b>Notes:</b> {{ movie.notes }}</p>
-                {% endif %}
-            </div>
-        </div>
-    </body>
-</html
+    <div class="detail-info">
+        <h1>{{ movie.title }} ({{ movie.release_year }})</h1>
+        <p><b>Director:</b> {{ movie.director }}</p>
+        <p><b>Genres:</b> {{ movie.genres }}</p>
+        <p><b>Runtime:</b> {{ movie.runtime }}</p> 
+        <p><b>TMDB Rating:</b> {{ movie.vote_average }}</p>
+        <p><b>My Rating:</b> {{ movie.my_rating }}</p>
+        <p><b>Watched on:</b> {{ movie.date_watched }}</p> 
+        {% if movie.notes %}
+        <p><b>Notes:</b> {{ movie.notes }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -49,3 +49,27 @@ def get_movie_details(tmdb_id):
         'poster_path': data.get('poster_path', None)
     }
     return movie_data
+
+def get_genres():
+    url= f"{TMDB_BASE_URL}/genre/movie/list"
+    params = {"api_key": TMDB_API_KEY}
+    response = requests.get(url, params=params)
+    data = response.json()
+    results_list = data['genres']
+    return results_list
+
+def discover_movies_by_genre(genre_id):
+    url= f"{TMDB_BASE_URL}/discover/movie"
+    params = {"api_key": TMDB_API_KEY, "with_genres": genre_id}
+    response = requests.get(url, params=params)
+    data = response.json()
+    results_list = data['results']
+    return results_list
+
+def get_watch_providers(tmdb_id):
+    url= f"{TMDB_BASE_URL}/movie/{tmdb_id}/watch/providers"
+    params ={"api_key": TMDB_API_KEY}
+    response = requests.get(url, params=params)
+    data = response.json()
+    results_list = data['results']
+    return results_list.get('GB', {})
