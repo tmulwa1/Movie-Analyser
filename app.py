@@ -100,6 +100,12 @@ def genre_browse(genre_id):
     genre_name = next((genre['name'] for genre in all_genres if genre['id'] == genre_id), "Unknown Genre")
     return render_template('genre_browse.html', movies=movies, genre_id=genre_id, page=page, genre_name= genre_name)
 
+@app.route('/discover/movie/<int:tmdb_id>')
+def watch_info(tmdb_id):
+    details = get_movie_details(tmdb_id)
+    providers = get_watch_providers(tmdb_id)
+    return render_template('watch_info.html', details=details, providers=providers)
+
 @app.context_processor
 def inject_image_base_url():
     # Injects the variable into every template automatically without passing manually

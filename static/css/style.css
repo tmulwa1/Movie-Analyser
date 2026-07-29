@@ -24,6 +24,12 @@ body {
     gap: 1.5rem;
 }
 
+.watch-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
 .detail-layout {
     display: flex;
     gap: 2rem;
