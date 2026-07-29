@@ -14,10 +14,12 @@
         <div class="movie-grid">
             {% for movie in movies %}
             <div class="movie-card">
-                <p>{{ movie.title }} ({{ movie.release_year }}) - My rating: {{ movie.my_rating }}</p>
-                {% if movie.poster_path %}
-                <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
-                {% endif %}
+                <p>
+                    {% if movie.poster_path %}
+                    <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+                    {% endif %}
+                    {{ movie.title }} ({{ movie.release_year }}) - My rating: {{ movie.my_rating }}
+                </p>
             {% endfor %}
             </div>
         </div>

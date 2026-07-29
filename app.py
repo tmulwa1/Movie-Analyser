@@ -58,7 +58,7 @@ def confirm_movie(tmdb_id):
         session.close()
 
         # Redirect to the dashboard after saving the movie
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('add_movie'))
 
 @app.route('/movies', methods=['GET'])
 def movie_list():

@@ -13,10 +13,9 @@
             <div class="movie-card">
                 <p>
                     {% if movie.poster_path %}
-                    <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+                    <a href="/movies/{{ movie.id }}"><img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster"></a>
                     {% endif %}
-                    {{ movie.title }} ({{ movie.release_year }}) - {{ movie.my_rating }}/10.0
-                    <a href="/movies/{{ movie.id }}">View Details</a>
+                    {{ movie.title }} ({{ movie.release_year }}) - {{ movie.my_rating }}
                 </p>
             </div>
             {% endfor %}
