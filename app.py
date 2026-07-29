@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from src.database import get_session, initialise_db, Movie
-from src.tmdb_client import get_movie_details, search_movies, get_genres, get_watch_providers
+from src.tmdb_client import get_movie_details, search_movies, get_genres, get_watch_providers, discover_movies_by_genre
 from src.charts import create_genre_chart, create_ratings_chart
 from datetime import datetime
 from config import TMDB_IMAGE_BASE_URL
@@ -89,6 +89,16 @@ def discover_genres():
     rendered = render_template('discover_genres.html', genres=genres)
     session.close()
     return rendered
+
+@app.route('/discover/genre/<int:genre_id>')
+def genre_browse(genre_id):
+    page = request.args.get('page', 1, type=int)
+    movies = discover_movies_by_genre(genre_id, page=page)
+
+    #Getting genre name
+    all_genres = get_genres()
+    genre_name = next((genre['name'] for genre in all_genres if genre['id'] == genre_id), "Unknown Genre")
+    return render_template('genre_browse.html', movies=movies, genre_id=genre_id, page=page, genre_name= genre_name)
 
 @app.context_processor
 def inject_image_base_url():

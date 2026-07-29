@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Dashboard{% endblock %}
+{% block title %}Discover Genres{% endblock %}
 
 {% block content %}
 <h1>Browse by Genres</h1>
 <div class="genre-grid">
     {% for genre in genres %}
-    <a href="{{ url_for('discover_genres', genre_id = genre['id']) }}" class="genre-title">
+    <a href="{{ url_for('genre_browse', genre_id=genre['id']) }}" class="genre-title">
         {{ genre['name'] }} <br>
     </a>
     {% endfor %}

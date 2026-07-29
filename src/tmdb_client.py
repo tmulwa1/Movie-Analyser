@@ -58,13 +58,25 @@ def get_genres():
     results_list = data['genres']
     return results_list
 
-def discover_movies_by_genre(genre_id):
+def discover_movies_by_genre(genre_id, page=1):
     url= f"{TMDB_BASE_URL}/discover/movie"
-    params = {"api_key": TMDB_API_KEY, "with_genres": genre_id}
+    params = {"api_key": TMDB_API_KEY, "with_genres": genre_id, "page": page}
     response = requests.get(url, params=params)
     data = response.json()
     results_list = data['results']
-    return results_list
+
+    #List comprehension to get release year
+    movies = [
+        {
+            'id': movie['id'],
+            'title': movie['title'],
+            'release_year': movie['release_date'][:4] if movie.get('release_date') else None,
+            'poster_path': movie['poster_path'],
+            'vote_average': movie['vote_average'],
+        }
+        for movie in results_list
+    ]
+    return movies
 
 def get_watch_providers(tmdb_id):
     url= f"{TMDB_BASE_URL}/movie/{tmdb_id}/watch/providers"
