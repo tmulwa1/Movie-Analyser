@@ -12,40 +12,40 @@
     </div>
 
     <div class="detail-info">
-        <h1>{{ details['title'] }} ({{ details['release_year'] }})</h1>
+        <h2>{{ details['title'] }} ({{ details['release_year'] }})</h1>
         <p><b>Director:</b> {{ details['director'] }}</p>
         <p><b>Genres:</b> {{ details['genres'] }}</p>
         <p><b>Runtime:</b> {{ details['runtime'] }}</p> 
         <p><b>TMDB Rating:</b> {{ details['vote_average'] }}</p>
     </div>
+</div>
 
-    <div class="watch-info">
-        <div>
-            {% if 'flatrate' in providers %}
-            <p><b>Stream:</b></p>
-            {% for provider in providers.flatrate %}
-            <p>{{ provider.provider_name }}</p>
-            {% endfor %}
-            {% endif %}
-        </div>
+<div class="watch-info">
+    <div>
+        {% if 'flatrate' in providers %}
+        <p><b>Stream:</b></p>
+        {% for provider in providers.flatrate %}
+        <p>{{ provider.provider_name }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
 
-        <div>
-            {% if 'rent' in providers %}
-            <p><b>Rent:</b></p>
-            {% for provider in providers.rent %}
-            <p>{{ provider.provider_name }}</p>
-            {% endfor %}
-            {% endif %}
-        </div>
+    <div>
+        {% if 'rent' in providers %}
+        <p><b>Rent:</b></p>
+        {% for provider in providers.rent %}
+        <p>{{ provider.provider_name }}</p>
+        {% endfor %}
+        {% endif %}
+    </div>
 
-        <div>
-            {% if 'buy' in providers %}
-            <p><b>Buy:</b></p>
-            {% for provider in providers.buy %}
-            <p>{{ provider.provider_name }}</p>
-            {% endfor %}
-            {% endif %}
-        </div>
+    <div>
+        {% if 'buy' in providers %}
+        <p><b>Buy:</b></p>
+        {% for provider in providers.buy %}
+        <p>{{ provider.provider_name }}</p>
+        {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}
