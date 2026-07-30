@@ -1,8 +1,9 @@
 :root {
-    --bg: #141414;
-    --accent: #000080;
-    --text: #FAF9F6;
-    --muted: #4f1d58;
+    --bg: #F7F5F2;
+    --card-bg: #EFECE7;
+    --accent: #92a6ee;
+    --text: #1C1C1C;
+    --muted: #8A7C94;
 }
 
 * {
@@ -50,13 +51,13 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
-    box-shadow: #141414;
+    box-shadow: var(--card-bg);
     transition: background-color 0.25s ease, transform 0.15s ease-out;
 }
 
 /*Zoom in and out effect*/
 .movie-card:hover {
-    background-color: #141414;
+    background-color: var(--card-bg);
     transform: scale(1.1);
 }
 
@@ -78,7 +79,7 @@ body {
     padding: 0.6rem 0.8rem;
     border: 1px solid var(--muted);
     border-radius: 6px;
-    background: #1f1f1f;
+    background: var(--card-bg);
     color: var(--text);
 }
 
@@ -97,7 +98,7 @@ button:hover {
 }
 
 .confirm-details {
-    background: #1f1f1f;
+    background: var(--card-bg);
     padding: 1rem 1.5rem;
     border-radius: 0.75rem;
     margin-bottom: 1.5rem;
@@ -120,7 +121,7 @@ button:hover {
     padding: 0.6rem;
     border: 1px solid var(--muted);
     border-radius: 6px;
-    background: #1f1f1f;
+    background: var(--card-bg);
     color: var(--text);
     font-family: inherit;
 }
@@ -129,3 +130,59 @@ button:hover {
     outline: none;
     border-color: var(--accent);
 } 
+
+/*Discover genres*/
+.genre-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.genre-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    background: var(--card-bg);
+    border-radius: 0.75rem;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.15s ease-out;
+}
+
+.genre-tile:hover {
+    background: var(--accent);
+    transform: scale(1.05);
+}
+
+/*Navigation bar*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 1rem 2rem;
+    border-bottom: 2px solid var(--accent);
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+.nav-brand {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.nav-links a {
+    margin-left: 1.5rem;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}

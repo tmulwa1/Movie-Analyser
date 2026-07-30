@@ -5,8 +5,8 @@
 <h1>Browse by Genres</h1>
 <div class="genre-grid">
     {% for genre in genres %}
-    <a href="{{ url_for('genre_browse', genre_id=genre['id']) }}" class="genre-title">
-        {{ genre['name'] }} <br>
+    <a href="{{ url_for('genre_browse', genre_id=genre['id']) }}" class="genre-tile">
+        {{ genre['name'] }}
     </a>
     {% endfor %}
 </div>
