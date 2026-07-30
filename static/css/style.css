@@ -51,8 +51,9 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
-    box-shadow: var(--card-bg);
-    transition: background-color 0.25s ease, transform 0.15s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.25s ease;
 }
 
 /*Zoom in and out effect*/
@@ -185,4 +186,13 @@ button:hover {
 
 .nav-links a:hover {
     color: var(--accent);
+}
+
+.movie-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.movie-card.visible:hover {
+    transform: translateY(0) scale(1.05);
 }

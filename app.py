@@ -83,12 +83,12 @@ def discover_genres():
 @app.route('/discover/genre/<int:genre_id>')
 def genre_browse(genre_id):
     page = request.args.get('page', 1, type=int)
-    movies = discover_movies_by_genre(genre_id, page=page)
+    movies, total_pages = discover_movies_by_genre(genre_id, page=page)
 
     #Getting genre name
     all_genres = get_genres()
     genre_name = next((genre['name'] for genre in all_genres if genre['id'] == genre_id), "Unknown Genre")
-    return render_template('genre_browse.html', movies=movies, genre_id=genre_id, page=page, genre_name= genre_name)
+    return render_template('genre_browse.html', movies=movies, genre_id=genre_id, page=page, genre_name= genre_name, total_pages=total_pages)
 
 @app.route('/discover/movie/<int:tmdb_id>')
 def watch_info(tmdb_id):

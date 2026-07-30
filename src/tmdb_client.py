@@ -64,6 +64,7 @@ def discover_movies_by_genre(genre_id, page=1):
     response = requests.get(url, params=params)
     data = response.json()
     results_list = data['results']
+    total_pages = data.get('total_pages', 1)
 
     #List comprehension to get release year
     movies = [
@@ -76,7 +77,7 @@ def discover_movies_by_genre(genre_id, page=1):
         }
         for movie in results_list
     ]
-    return movies
+    return movies, total_pages
 
 def get_watch_providers(tmdb_id):
     url= f"{TMDB_BASE_URL}/movie/{tmdb_id}/watch/providers"
