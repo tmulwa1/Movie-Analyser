@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from src.database import get_session, initialise_db, Movie
 from src.tmdb_client import get_movie_details, search_movies, get_genres, get_watch_providers, discover_movies_by_genre
-from src.charts import create_genre_chart, create_ratings_chart
 from datetime import datetime
 from config import TMDB_IMAGE_BASE_URL
 
@@ -11,10 +10,8 @@ app = Flask(__name__)
 def dashboard():
 
     session = get_session() 
-    create_genre_chart()
-    create_ratings_chart()
     # Query all movies from the database
-    movies = session.query(Movie).all()
+    movies = session.query(Movie).order_by(Movie.date_watched.desc()).all()
     rendered = render_template('dashboard.html', movies=movies)
     session.close()
 
@@ -60,14 +57,6 @@ def confirm_movie(tmdb_id):
         # Redirect to the dashboard after saving the movie
         return redirect(url_for('add_movie'))
 
-@app.route('/movies', methods=['GET'])
-def movie_list():
-    session = get_session()
-    movies = session.query(Movie).all()
-    rendered = render_template('movie_list.html', movies=movies)
-    session.close()
-    return rendered
-
 @app.route('/movies/<int:movie_id>', methods=['GET'])
 def movie_details(movie_id):
     session = get_session()
@@ -78,7 +67,8 @@ def movie_details(movie_id):
         session.close()
         return redirect(url_for('dashboard'))
 
-    rendered = render_template('movie_detail.html', movie=movie)
+    providers = get_watch_providers(movie.tmdb_id)
+    rendered = render_template('movie_detail.html', movie=movie, providers=providers)
     session.close()
     return rendered
 

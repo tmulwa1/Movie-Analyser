@@ -4,9 +4,6 @@
 {% block content %}
 <h1>My Movies</h1>
 
-<img src="{{ url_for('static', filename='charts/genre_breakdown.png') }}" alt="Genre Breakdown Chart">
-<img src="{{ url_for('static', filename='charts/ratings.png') }}" alt="Ratings Over Time Chart">
-
 <div class="movie-grid">
     {% for movie in movies %}
     <div class="movie-card">

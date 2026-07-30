@@ -22,5 +22,38 @@
         <p><b>Notes:</b> {{ movie.notes }}</p>
         {% endif %}
     </div>
+
+    <div class="watch-info">
+        {% if not providers %}
+        <p><b>No UK provider information available for this film</b></p>
+        {% else %}
+        <div>
+            {% if 'flatrate' in providers %}
+            <p><b>Stream:</b></p>
+            {% for provider in providers.flatrate %}
+            <p>{{ provider.provider_name }}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div>
+            {% if 'rent' in providers %}
+            <p><b>Rent:</b></p>
+            {% for provider in providers.rent %}
+            <p>{{ provider.provider_name }}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div>
+            {% if 'buy' in providers %}
+            <p><b>Buy:</b></p>
+            {% for provider in providers.buy %}
+            <p>{{ provider.provider_name }}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
