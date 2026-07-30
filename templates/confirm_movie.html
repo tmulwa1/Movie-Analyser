@@ -4,19 +4,27 @@
 {% block content %}
 <h1>Confirm Movie</h1>
 
-<p>
-Title: {{ details.title }} ({{details.release_year}}) <br>
-Director: {{ details.director }} <br>
-Genres: {{ details.genres }}
-</p>
+<div class="confirm-details">
+    <p>
+    Title: {{ details.title }} ({{details.release_year}}) <br>
+    Director: {{ details.director }} <br>
+    Genres: {{ details.genres }}
+    </p>
+</div>
 
-<form method="POST">
-    <input type="number" name="my_rating" step="0.5" placeholder="Enter your rating (1-10)" min="1" max="10">
+<form method="POST" class="confirm-form">
+    <label for="my_rating">Your Rating (1-10)</label><br>
+    <input type="number" name="my_rating" id="my_rating" step="0.5" min="1" max="10">
     <br><br>
-    <input type="date" name="date_watched" placeholder="Enter the date watched">
+
+    <label for="date_watched">Date Watched</label><br>
+    <input type="date" name="date_watched" id="date_watched">
     <br><br>
-    <textarea name="notes" placeholder="Thoughts on the movie..."></textarea>
+
+    <label for="notes">Notes</label><br>
+    <textarea name="notes" id="notes" rows="4" placeholder="Thoughts on the movie..."></textarea>
     <br><br>
+
     <button type="submit">Add movie</button>
 </form>
 {% endblock %}

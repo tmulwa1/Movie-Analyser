@@ -4,15 +4,23 @@
 {% block content %}
 <h1>Add a Movie</h1>
 
-<form method="POST">
+<form method="POST" class="search-form">
     <input type="text" name="query" placeholder="Search for a movie">
     <button type="submit">Search</button>
 </form>
 
-{% for movie in results %}
-    <p>
-        {{ movie.title }} ({{ movie.release_year }})
-        <a href="/add/confirm/{{ movie.id }}">Add to my movies</a>
-    </p>
-{% endfor %}
+<div class="movie-grid">
+    {% for movie in results %}
+    <div class="movie-card">
+        {% if movie.poster_path %}
+        <a href="{{ url_for('confirm_movie', tmdb_id = movie.id )}}">
+            <img src="{{ TMDB_IMAGE_BASE_URL }}{{ movie.poster_path }}" alt="{{ movie.title }} Poster">
+        </a>
+        {% endif %}
+        <p>
+            {{ movie.title }} ({{ movie.release_year }})
+        </p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

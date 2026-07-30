@@ -17,7 +17,7 @@ body {
     padding: 20px;
 }
 
-/*Movie Grid*/
+/*Movie grid and posters*/
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -54,6 +54,7 @@ body {
     transition: background-color 0.25s ease, transform 0.15s ease-out;
 }
 
+/*Zoom in and out effect*/
 .movie-card:hover {
     background-color: #141414;
     transform: scale(1.1);
@@ -64,3 +65,67 @@ body {
     display: block;
     border-radius: 0.5rem;
 }
+
+/*Add and confirm movie*/
+.search-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--muted);
+    border-radius: 6px;
+    background: #1f1f1f;
+    color: var(--text);
+}
+
+button {
+    background: var(--accent);
+    color: var(--text);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.confirm-details {
+    background: #1f1f1f;
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.confirm-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-width: 400px;
+}
+
+.confirm-form label {
+    font-weight: bold;
+    margin-top: 0.8rem;
+    color: var(--text);
+}
+
+.confirm-form input, .confirm-form textarea {
+    padding: 0.6rem;
+    border: 1px solid var(--muted);
+    border-radius: 6px;
+    background: #1f1f1f;
+    color: var(--text);
+    font-family: inherit;
+}
+
+.confirm-form input:focus, .confirm-form textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+} 
