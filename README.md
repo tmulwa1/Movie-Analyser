@@ -16,7 +16,7 @@ An Flask web app for logging movies you've watched and discovering new ones - a 
 ## Setup
 1. Clone repository
 2. Get free TMDb API key: **https://www.themoviedb.org/settings/api**
-3. Create `.env` file in project root (copy .env.example and add your key)
+3. Create `.env` file in project root (copy `.env.example` and add your key)
 4. Install dependencies: **pip install -r requirements.txt**
 5. Run app: **python app.py**
 6. Open browser at **http://127.0.0.1:5000**
